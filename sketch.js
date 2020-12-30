@@ -5,6 +5,7 @@ var fedTime, lastFed;
 var foodObj;
 var milkimage;
 var money,moneyS
+var bttlemove
 money = 200
 moneyS = 200
 function preload()
@@ -54,6 +55,16 @@ function setup() {
 function draw() {  
   background(46,139,87)
 
+  if(bttlemove===true){
+    for(var i=410;i<=720;i++){
+       background(46,139,87)
+
+imageMode(CENTER);
+image(milkimage,i,220,70,70)
+    }
+    //bttlemove = false
+}
+
   fedTime = database.ref("FeedTime")
   fedTime.on('value',function(data){
     lastFed = data.val();
@@ -96,7 +107,8 @@ function feedDog(){
   if(foodS>0){
   dog.addImage(dogHappy)
   foodS--
-  setInterval(image(milkimage,720,220,70,70),200);
+  //setInterval(image(milkimage,720,220,70,70),200);
+  bttlemove = true
   foodObj.updateFoodStock(foodObj.getFoodStock()-1)
   database.ref('/').update({
     Food: foodObj.getFoodStock(),
@@ -121,6 +133,7 @@ function feedDog(){
 
 function doggoSit(){
   dog.addImage(doggo)
+  bttlemove = false
 }
 
 function earnIt(){
