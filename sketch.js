@@ -107,6 +107,7 @@ function feedDog(){
 }
 
   function addFood(){
+    if(moneyS>0){
     if(foodS<20){
     foodS++
     moneyS=moneyS-50;
@@ -115,7 +116,7 @@ function feedDog(){
       Food:foodS
     })      
     }
-
+  }
   }
 
 function doggoSit(){
